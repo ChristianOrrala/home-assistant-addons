@@ -39,7 +39,6 @@ options:
   APP_NAME: "Heimdall"
   http_port: 8080
   https_port: 8443
-  restore_backup: ""
 
 schema:
   PUID: int
@@ -49,4 +48,3 @@ schema:
   APP_NAME: str
   http_port: port
   https_port: port
-  restore_backup: "str?"

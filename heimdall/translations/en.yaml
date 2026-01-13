@@ -20,6 +20,3 @@ configuration:
   https_port:
     name: HTTPS Port
     description: Port for HTTPS access (default 8443)
-  restore_backup:
-    name: Restore Backup
-    description: "Path to a backup .zip file to restore (place in /share folder). Example: heimdall_backup.zip. Clear after restore completes."

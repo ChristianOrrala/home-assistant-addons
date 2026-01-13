@@ -20,6 +20,3 @@ configuration:
   https_port:
     name: Puerto HTTPS
     description: Puerto para acceso HTTPS (por defecto 8443)
-  restore_backup:
-    name: Restaurar Respaldo
-    description: "Ruta a un archivo .zip de respaldo para restaurar (coloca en /share). Ejemplo: heimdall_backup.zip. Limpia después de restaurar."
