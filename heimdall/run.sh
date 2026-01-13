@@ -55,6 +55,8 @@ if [ -f "${CONFIG_PATH}" ]; then
         # Check multiple possible locations
         BACKUP_FILE=""
         SEARCH_PATHS=(
+            "/homeassistant/${BACKUP_FILENAME}"
+            "/homeassistant/${RESTORE_BACKUP}"
             "/share/${BACKUP_FILENAME}"
             "/share/${RESTORE_BACKUP}"
             "${RESTORE_BACKUP}"

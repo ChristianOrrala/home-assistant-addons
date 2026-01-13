@@ -1,5 +1,5 @@
 name: "Heimdall Dashboard"
-version: "1.1.1"
+version: "1.1.2"
 slug: heimdall
 description: "🚀 Your Personal Application Dashboard - Organize and access all your web apps, services, and bookmarks from one beautiful, customizable homepage"
 maintainer: Christian Orrala <https://github.com/ChristianOrrala>
@@ -30,6 +30,7 @@ ports_description:
 map:
   - addon_config:rw
   - share:ro
+  - config:ro
 
 options:
   PUID: 1000

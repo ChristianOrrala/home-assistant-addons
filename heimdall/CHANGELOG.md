@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.1.2] - 2026-01-12
+
+### Added
+- Added `/homeassistant/` folder mapping for backup file access
+- Backup can now be placed directly in the Home Assistant config folder
+
+### Changed
+- `/homeassistant/<filename>` is now checked first when searching for backups
+
 ## [1.1.1] - 2026-01-12
 
 ### Fixed
