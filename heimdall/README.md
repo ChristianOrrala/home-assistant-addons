@@ -1,8 +1,9 @@
 # Heimdall Dashboard Add-on for Home Assistant
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Maintainer](https://img.shields.io/badge/Maintainer-Christian%20Orrala-green.svg)](https://github.com/ChristianOrrala)
 
-A Home Assistant add-on that provides [Heimdall Dashboard](https://github.com/linuxserver/Heimdall) - an elegant application dashboard and launcher.
+A Home Assistant add-on by **Christian Orrala** that provides [Heimdall Dashboard](https://github.com/linuxserver/Heimdall) - an elegant application dashboard and launcher.
 
 ## Features
 
@@ -60,6 +61,10 @@ Data persists across add-on restarts and updates.
 - [Heimdall GitHub](https://github.com/linuxserver/Heimdall)
 - [LinuxServer.io Documentation](https://docs.linuxserver.io/images/docker-heimdall)
 
+## Author
+
+**Christian Orrala** - [@ChristianOrrala](https://github.com/ChristianOrrala)
+
 ## License
 
-MIT License - See [LICENSE](LICENSE) for details.
+MIT License - Copyright (c) 2026 Christian Orrala

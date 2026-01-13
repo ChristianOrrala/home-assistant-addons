@@ -1,8 +1,9 @@
-# Home Assistant Add-ons Repository
+# Home Assistant Add-ons by Christian Orrala
 
 [![Home Assistant Add-ons](https://img.shields.io/badge/Home%20Assistant-Add--ons-blue.svg)](https://home-assistant.io/)
+[![Maintainer](https://img.shields.io/badge/Maintainer-Christian%20Orrala-green.svg)](https://github.com/ChristianOrrala)
 
-A collection of add-ons for Home Assistant.
+A collection of custom add-ons for Home Assistant, developed and maintained by **Christian Orrala**.
 
 ## Add-ons
 
@@ -31,6 +32,11 @@ An elegant application dashboard and launcher that allows you to organize and ac
 
 Open an issue on GitHub for bug reports or feature requests.
 
+## Author
+
+**Christian Orrala**
+- GitHub: [@ChristianOrrala](https://github.com/ChristianOrrala)
+
 ## License
 
-MIT License
+MIT License - Copyright (c) 2026 Christian Orrala
