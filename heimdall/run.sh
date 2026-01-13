@@ -52,17 +52,13 @@ if [ -f "${CONFIG_PATH}" ]; then
         # Extract just the filename if a full path was provided
         BACKUP_FILENAME=$(basename "${RESTORE_BACKUP}")
         
-        # Check multiple possible locations
+        # Check multiple possible locations (use /share folder for backups)
         BACKUP_FILE=""
         SEARCH_PATHS=(
-            "/homeassistant/${BACKUP_FILENAME}"
-            "/homeassistant/${RESTORE_BACKUP}"
             "/share/${BACKUP_FILENAME}"
             "/share/${RESTORE_BACKUP}"
             "${RESTORE_BACKUP}"
-            "/homeassistant/shared/${BACKUP_FILENAME}"
-            "/config/${BACKUP_FILENAME}"
-            "/addon_configs/${BACKUP_FILENAME}"
+            "/addon_configs/heimdall/${BACKUP_FILENAME}"
         )
         
         bashio::log.info "Searching for backup file..."
