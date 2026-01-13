@@ -134,7 +134,7 @@ if [ -f "${CONFIG_PATH}" ]; then
                 # Cleanup temp directory
                 rm -rf "${TEMP_DIR}"
                 
-                bashio::log.success "Backup restored successfully!"
+                bashio::log.info "✅ Backup restored successfully!"
                 bashio::log.warning "IMPORTANT: Clear the 'restore_backup' option and restart to prevent re-extraction"
             else
                 bashio::log.error "Backup file must be a .zip file"
