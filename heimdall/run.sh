@@ -80,7 +80,7 @@ if [ -f "${CONFIG_PATH}" ]; then
             
             # Check if it's a zip file
             if [[ "${BACKUP_FILE}" == *.zip ]]; then
-                bashio::log.info "Extracting backup to /config..."
+                bashio::log.info "Extracting backup..."
                 
                 # Create backup of current config
                 if [ -d "/config/www" ] || [ -f "/config/app.sqlite" ]; then
@@ -98,8 +98,41 @@ if [ -f "${CONFIG_PATH}" ]; then
                     bashio::log.info "Current config backed up to /config/backups/pre_restore_${BACKUP_DATE}.tar.gz"
                 fi
                 
-                # Extract the backup
-                unzip -o "${BACKUP_FILE}" -d /config/ 2>&1 | head -20
+                # Extract to temporary directory first
+                TEMP_DIR="/tmp/heimdall_restore_$$"
+                mkdir -p "${TEMP_DIR}"
+                bashio::log.info "Extracting to temporary directory..."
+                unzip -o "${BACKUP_FILE}" -d "${TEMP_DIR}/" 2>&1 | head -10
+                
+                # Copy important files (database and storage)
+                bashio::log.info "Restoring database and settings..."
+                
+                # Restore database if exists
+                if [ -f "${TEMP_DIR}/www/app.sqlite" ]; then
+                    cp -f "${TEMP_DIR}/www/app.sqlite" /config/www/app.sqlite 2>/dev/null || true
+                    bashio::log.info "  ✓ Database restored"
+                elif [ -f "${TEMP_DIR}/app.sqlite" ]; then
+                    cp -f "${TEMP_DIR}/app.sqlite" /config/www/app.sqlite 2>/dev/null || true
+                    bashio::log.info "  ✓ Database restored"
+                fi
+                
+                # Restore storage folder (backgrounds, icons)
+                if [ -d "${TEMP_DIR}/www/storage" ]; then
+                    cp -rf "${TEMP_DIR}/www/storage/"* /config/www/storage/ 2>/dev/null || true
+                    bashio::log.info "  ✓ Storage folder restored"
+                elif [ -d "${TEMP_DIR}/storage" ]; then
+                    cp -rf "${TEMP_DIR}/storage/"* /config/www/storage/ 2>/dev/null || true
+                    bashio::log.info "  ✓ Storage folder restored"
+                fi
+                
+                # Restore .env if exists (optional)
+                if [ -f "${TEMP_DIR}/www/.env" ]; then
+                    cp -f "${TEMP_DIR}/www/.env" /config/www/.env 2>/dev/null || true
+                    bashio::log.info "  ✓ Environment file restored"
+                fi
+                
+                # Cleanup temp directory
+                rm -rf "${TEMP_DIR}"
                 
                 bashio::log.success "Backup restored successfully!"
                 bashio::log.warning "IMPORTANT: Clear the 'restore_backup' option and restart to prevent re-extraction"
