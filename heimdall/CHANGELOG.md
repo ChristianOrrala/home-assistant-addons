@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.1] - 2026-01-12
+
+### Fixed
+- Improved backup file search - now checks multiple locations automatically
+- Extracts filename from full path if user enters complete path
+- Better error messages with instructions when backup not found
+- Lists /share folder contents to help troubleshoot
+
 ## [1.1.0] - 2026-01-12
 
 ### Added

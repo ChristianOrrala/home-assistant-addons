@@ -46,21 +46,35 @@ if [ -f "${CONFIG_PATH}" ]; then
     # ==============================================================================
     # Restore backup if specified
     # ==============================================================================
-    if [ -n "${RESTORE_BACKUP}" ] && [ "${RESTORE_BACKUP}" != "null" ]; then
+    if [ -n "${RESTORE_BACKUP}" ] && [ "${RESTORE_BACKUP}" != "null" ] && [ "${RESTORE_BACKUP}" != "" ]; then
         bashio::log.info "Backup restore requested: ${RESTORE_BACKUP}"
         
-        # Check if file exists (could be in /share or absolute path)
+        # Extract just the filename if a full path was provided
+        BACKUP_FILENAME=$(basename "${RESTORE_BACKUP}")
+        
+        # Check multiple possible locations
         BACKUP_FILE=""
-        if [ -f "${RESTORE_BACKUP}" ]; then
-            BACKUP_FILE="${RESTORE_BACKUP}"
-        elif [ -f "/share/${RESTORE_BACKUP}" ]; then
-            BACKUP_FILE="/share/${RESTORE_BACKUP}"
-        elif [ -f "/share/${RESTORE_BACKUP}.zip" ]; then
-            BACKUP_FILE="/share/${RESTORE_BACKUP}.zip"
-        fi
+        SEARCH_PATHS=(
+            "/share/${BACKUP_FILENAME}"
+            "/share/${RESTORE_BACKUP}"
+            "${RESTORE_BACKUP}"
+            "/homeassistant/shared/${BACKUP_FILENAME}"
+            "/config/${BACKUP_FILENAME}"
+            "/addon_configs/${BACKUP_FILENAME}"
+        )
+        
+        bashio::log.info "Searching for backup file..."
+        for path in "${SEARCH_PATHS[@]}"; do
+            bashio::log.debug "  Checking: ${path}"
+            if [ -f "${path}" ]; then
+                BACKUP_FILE="${path}"
+                bashio::log.info "  Found at: ${path}"
+                break
+            fi
+        done
 
         if [ -n "${BACKUP_FILE}" ]; then
-            bashio::log.info "Found backup file: ${BACKUP_FILE}"
+            bashio::log.info "Using backup file: ${BACKUP_FILE}"
             
             # Check if it's a zip file
             if [[ "${BACKUP_FILE}" == *.zip ]]; then
@@ -86,14 +100,21 @@ if [ -f "${CONFIG_PATH}" ]; then
                 unzip -o "${BACKUP_FILE}" -d /config/ 2>&1 | head -20
                 
                 bashio::log.success "Backup restored successfully!"
-                bashio::log.warning "IMPORTANT: Clear the 'restore_backup' option after restart to prevent re-extraction"
+                bashio::log.warning "IMPORTANT: Clear the 'restore_backup' option and restart to prevent re-extraction"
             else
                 bashio::log.error "Backup file must be a .zip file"
             fi
         else
-            bashio::log.error "Backup file not found: ${RESTORE_BACKUP}"
-            bashio::log.info "Place your backup.zip file in the /share folder and use just the filename"
-            bashio::log.info "Example: restore_backup: 'heimdall_backup.zip'"
+            bashio::log.error "Backup file not found!"
+            bashio::log.info "Searched in: /share/, /config/, /addon_configs/"
+            bashio::log.info ""
+            bashio::log.info "To restore a backup:"
+            bashio::log.info "  1. Upload your .zip file to the 'share' folder via File Editor or Samba"
+            bashio::log.info "  2. In restore_backup, enter ONLY the filename: heimdall.zip"
+            bashio::log.info "  3. Restart the add-on"
+            bashio::log.info ""
+            bashio::log.info "Listing /share folder contents:"
+            ls -la /share/ 2>/dev/null || bashio::log.warning "/share folder not accessible"
         fi
     fi
 
