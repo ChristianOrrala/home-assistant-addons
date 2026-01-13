@@ -1,5 +1,5 @@
 name: "Heimdall Dashboard"
-version: "1.0.3"
+version: "1.1.0"
 slug: heimdall
 description: "🚀 Your Personal Application Dashboard - Organize and access all your web apps, services, and bookmarks from one beautiful, customizable homepage"
 maintainer: Christian Orrala <https://github.com/ChristianOrrala>
@@ -29,6 +29,7 @@ ports_description:
 
 map:
   - addon_config:rw
+  - share:ro
 
 options:
   PUID: 1000
@@ -38,6 +39,7 @@ options:
   APP_NAME: "Heimdall"
   http_port: 8080
   https_port: 8443
+  restore_backup: ""
 
 schema:
   PUID: int
@@ -47,3 +49,4 @@ schema:
   APP_NAME: str
   http_port: port
   https_port: port
+  restore_backup: "str?"

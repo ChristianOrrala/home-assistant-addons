@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.1.0] - 2026-01-12
+
+### Added
+- **Backup restore feature**: New `restore_backup` configuration option to restore Heimdall data from a .zip backup file
+- Mapped `/share` folder for easy backup file access
+- Automatic backup of current config before restore
+- User-friendly error messages for backup restore
+
+### Changed
+- Version bump to 1.1.0 (minor version for new feature)
+
 ## [1.0.3] - 2026-01-12
 
 ### Fixed
