@@ -47,5 +47,3 @@ schema:
   APP_NAME: str
   http_port: port
   https_port: port
-
-image: ghcr.io/home-assistant/{arch}-addon-heimdall
