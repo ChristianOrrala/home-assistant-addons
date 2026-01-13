@@ -1,0 +1,50 @@
+name: Heimdall Dashboard
+version: "1.0.0"
+slug: heimdall
+description: Heimdall Dashboard - Application dashboard and launcher
+url: https://github.com/linuxserver/Heimdall
+arch:
+  - aarch64
+  - amd64
+  - armv7
+  - i386
+init: false
+homeassistant_api: false
+host_network: false
+hassio_api: false
+panel_icon: mdi:view-dashboard
+panel_title: Heimdall
+startup: application
+ingress: true
+ingress_port: 8080
+webui: http://[HOST]:[PORT:8080]
+
+ports:
+  8080/tcp: 8080
+  8443/tcp: 8443
+ports_description:
+  8080/tcp: "HTTP Web UI"
+  8443/tcp: "HTTPS Web UI"
+
+map:
+  - addon_config:rw
+
+options:
+  PUID: 1000
+  PGID: 1000
+  TZ: "America/Chicago"
+  ALLOW_INTERNAL_REQUESTS: true
+  APP_NAME: "Heimdall"
+  http_port: 8080
+  https_port: 8443
+
+schema:
+  PUID: int
+  PGID: int
+  TZ: str
+  ALLOW_INTERNAL_REQUESTS: bool
+  APP_NAME: str
+  http_port: port
+  https_port: port
+
+image: ghcr.io/home-assistant/{arch}-addon-heimdall

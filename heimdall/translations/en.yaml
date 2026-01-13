@@ -1,0 +1,22 @@
+configuration:
+  PUID:
+    name: User ID
+    description: User ID for file permissions (run 'id' to find yours)
+  PGID:
+    name: Group ID
+    description: Group ID for file permissions (run 'id' to find yours)
+  TZ:
+    name: Timezone
+    description: Your local timezone (e.g., America/New_York, Europe/London)
+  ALLOW_INTERNAL_REQUESTS:
+    name: Allow Internal Requests
+    description: Allow Heimdall to access internal/private IP addresses
+  APP_NAME:
+    name: Application Name
+    description: Name shown in browser tab and header
+  http_port:
+    name: HTTP Port
+    description: Port for HTTP access (default 8080)
+  https_port:
+    name: HTTPS Port
+    description: Port for HTTPS access (default 8443)

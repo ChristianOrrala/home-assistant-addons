@@ -1,0 +1,5 @@
+build_from:
+  aarch64: linuxserver/heimdall:latest
+  amd64: linuxserver/heimdall:latest
+  armv7: linuxserver/heimdall:latest
+  i386: linuxserver/heimdall:latest
