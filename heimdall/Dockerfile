@@ -6,7 +6,7 @@ LABEL \
     io.hass.name="Heimdall Dashboard" \
     io.hass.description="Application dashboard and launcher" \
     io.hass.type="addon" \
-    io.hass.version="1.0.2"
+    io.hass.version="1.0.3"
 
 # Install bashio for Home Assistant integration
 RUN apk add --no-cache \

@@ -1,5 +1,5 @@
 name: "Heimdall Dashboard"
-version: "1.0.2"
+version: "1.0.3"
 slug: heimdall
 description: "🚀 Your Personal Application Dashboard - Organize and access all your web apps, services, and bookmarks from one beautiful, customizable homepage"
 maintainer: Christian Orrala <https://github.com/ChristianOrrala>
@@ -17,15 +17,15 @@ panel_icon: mdi:view-dashboard
 panel_title: Heimdall
 startup: application
 ingress: true
-ingress_port: 8080
-webui: http://[HOST]:[PORT:8080]
+ingress_port: 80
+webui: http://[HOST]:[PORT:80]
 
 ports:
-  8080/tcp: 8080
-  8443/tcp: 8443
+  80/tcp: 8080
+  443/tcp: 8443
 ports_description:
-  8080/tcp: "HTTP Web UI"
-  8443/tcp: "HTTPS Web UI"
+  80/tcp: "HTTP Web UI"
+  443/tcp: "HTTPS Web UI"
 
 map:
   - addon_config:rw

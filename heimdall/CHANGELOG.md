@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.3] - 2026-01-12
+
+### Fixed
+- Fixed port mapping - Heimdall uses ports 80/443 internally, now correctly mapped to 8080/8443 externally
+- Fixed ingress port configuration
+
 ## [1.0.2] - 2026-01-12
 
 ### Fixed
